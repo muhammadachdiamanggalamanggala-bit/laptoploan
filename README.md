@@ -66,6 +66,7 @@ Atur environment variables berikut di Vercel sebelum deploy:
 - `APP_KEY`: buat sekali dengan `php artisan key:generate --show`, lalu simpan nilainya di Vercel (jangan commit ke Git).
 - `APP_URL`: URL deployment Vercel.
 - `DB_CONNECTION=mysql`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD`: koneksi ke database MySQL yang dapat diakses dari Vercel.
+- Untuk Aiven MySQL, image memuat CA publik di `certs/aiven-ca.pem` dan menetapkan `MYSQL_ATTR_SSL_CA=/app/certs/aiven-ca.pem` untuk verifikasi TLS. Jangan mengganti file CA itu dengan kredensial database.
 
 Database SQLite lokal tidak disertakan dalam image. Jalankan migrasi pada database production satu kali melalui proses release/CI setelah environment database tersedia:
 
