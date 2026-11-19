@@ -1,0 +1,104 @@
+:root {
+    --scene-bg: #edf3e9;
+    --scene-grid: rgba(21, 79, 82, .075);
+    --scene-line: rgba(21, 79, 82, .18);
+    --scene-device: rgba(16, 104, 111, .09);
+    --scene-accent: #e7a93c;
+}
+
+[data-bs-theme="dark"] {
+    --scene-bg: #101d23;
+    --scene-grid: rgba(155, 214, 197, .07);
+    --scene-line: rgba(155, 214, 197, .17);
+    --scene-device: rgba(86, 193, 186, .09);
+    --scene-accent: #f0bd58;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    background: transparent !important;
+}
+
+.laptop-backdrop {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: var(--scene-bg);
+    background-image:
+        linear-gradient(var(--scene-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--scene-grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+.laptop-backdrop::before {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0 68%, rgba(235, 173, 66, .055) 68.1% 68.3%, transparent 68.4%);
+    content: "";
+}
+
+.laptop-backdrop .backdrop-device {
+    position: absolute;
+    right: clamp(-3rem, 4vw, 4rem);
+    bottom: clamp(-4rem, 2vh, 2rem);
+    color: var(--scene-device);
+    font-size: clamp(18rem, 34vw, 34rem);
+    line-height: 1;
+    transform: rotate(-12deg);
+}
+
+.laptop-backdrop .backdrop-circuit {
+    position: absolute;
+    width: clamp(100px, 17vw, 220px);
+    height: 70px;
+    border-top: 2px solid var(--scene-line);
+    border-right: 2px solid var(--scene-line);
+    opacity: .75;
+}
+
+.laptop-backdrop .backdrop-circuit::after {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 9px;
+    height: 9px;
+    background: var(--scene-accent);
+    content: "";
+}
+
+.backdrop-circuit-top {
+    top: 13vh;
+    left: 8vw;
+    transform: rotate(8deg);
+}
+
+.backdrop-circuit-low {
+    bottom: 20vh;
+    left: 43vw;
+    transform: rotate(188deg) scale(.78);
+}
+
+@media (max-width: 760px) {
+    .laptop-backdrop {
+        background-size: 38px 38px;
+    }
+
+    .laptop-backdrop .backdrop-device {
+        right: -4rem;
+        bottom: 1rem;
+        font-size: 18rem;
+    }
+
+    .backdrop-circuit-low {
+        left: 22vw;
+        bottom: 15vh;
+    }
+}
